@@ -1,0 +1,10 @@
+<mat-card class="todo-display-card">
+  <mat-card-title>{{ todo.name }}</mat-card-title>
+  <mat-card-content>
+    <p>{{ todo.description }}</p>
+    <p>Assigned to: {{ todo.assignedTo }}</p>
+  </mat-card-content>
+  <mat-card-footer>
+    <p>{{ getStatusString(todo.status) }}</p>
+  </mat-card-footer>
+</mat-card>

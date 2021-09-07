@@ -1,0 +1,9 @@
+.todo-display-card {
+  border: 1px dashed black;
+  margin-bottom: 1rem;
+  background-color: blueviolet;
+  color: white;
+  .mat-card-footer {
+    padding: 8px;
+  }
+}
