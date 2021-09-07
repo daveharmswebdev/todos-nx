@@ -1,3 +1,6 @@
 <h1>My Over Engineered Todo Application</h1>
 
-<pre>{{ todos | json }}</pre>
+<todos-nx-todo-display-card
+  *ngFor="let todo of todos"
+  [todo]="todo"
+></todos-nx-todo-display-card>

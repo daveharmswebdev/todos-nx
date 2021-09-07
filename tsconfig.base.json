@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@todos-nx/data": ["libs/data/src/index.ts"]
+      "@todos-nx/data": ["libs/data/src/index.ts"],
+      "@todos-nx/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
