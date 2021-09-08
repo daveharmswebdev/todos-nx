@@ -6,6 +6,6 @@ import { MaterialModule } from './material.module';
 @NgModule({
   imports: [CommonModule, MaterialModule],
   declarations: [TodoDisplayCardComponent],
-  exports: [TodoDisplayCardComponent],
+  exports: [MaterialModule, TodoDisplayCardComponent],
 })
 export class UiModule {}
