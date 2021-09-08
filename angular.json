@@ -9,12 +9,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/data/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/data/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/data"],
+          "outputs": [
+            "coverage/libs/data"
+          ],
           "options": {
             "jestConfig": "libs/data/jest.config.js",
             "passWithNoTests": true
@@ -30,7 +34,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/todos",
             "index": "apps/todos/src/index.html",
@@ -38,8 +44,14 @@
             "polyfills": "apps/todos/src/polyfills.ts",
             "tsConfig": "apps/todos/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/todos/src/favicon.ico", "apps/todos/src/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/todos/src/styles.scss"],
+            "assets": [
+              "apps/todos/src/favicon.ico",
+              "apps/todos/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/todos/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -104,7 +116,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/todos"],
+          "outputs": [
+            "coverage/apps/todos"
+          ],
           "options": {
             "jestConfig": "apps/todos/jest.config.js",
             "passWithNoTests": true
@@ -133,7 +147,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/todos-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/todos-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -146,7 +162,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui"],
+          "outputs": [
+            "coverage/libs/ui"
+          ],
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
@@ -155,7 +173,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ui/src/**/*.ts",
+              "libs/ui/src/**/*.html"
+            ]
           }
         }
       }
@@ -163,7 +184,7 @@
   },
   "cli": {
     "analytics": false,
-    "defaultCollection": "@nrwl/angular",
+    "defaultCollection": "@ngrx/schematics",
     "packageManager": "npm"
   },
   "schematics": {
