@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { ITodo } from '@todos-nx/data';
 import { Observable } from 'rxjs';
 import { TodosService } from '../services/todos.service';
 import { fetchTodos } from '../store/actions/todos.actions';
 import { TodosState } from '../store/reducers/todos.reducer';
+import { selectTodos } from '../store/selectors/todos.selectors';
 
 @Component({
   selector: 'todos-nx-todos',
@@ -20,7 +21,7 @@ export class TodosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todos$ = this.todosService.getTodos();
+    this.todos$ = this.store.pipe(select(selectTodos));
 
     this.store.dispatch(fetchTodos());
   }

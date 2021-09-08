@@ -9,8 +9,6 @@ export class TodosService {
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<ITodo[]> {
-    return this.http
-      .get<ITodo[]>('http://localhost:3000/todos')
-      .pipe(tap((response: any) => console.log(response)));
+    return this.http.get<ITodo[]>('http://localhost:3000/todos');
   }
 }

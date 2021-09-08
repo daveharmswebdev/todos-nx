@@ -5,17 +5,18 @@ import { TodosService } from './services/todos.service';
 import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos/todos.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromTodos from './store/reducers';
+import * as fromTodos from './store/reducers/todos.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodosEffects } from './store/effects/todos.effects';
+import { metaReducers } from '../reducers';
 
 @NgModule({
   imports: [
     CommonModule,
     UiModule,
     TodosRoutingModule,
-    StoreModule.forFeature(fromTodos.todosFeatureKey, fromTodos.reducers, {
-      metaReducers: fromTodos.metaReducers,
+    StoreModule.forFeature('todosFeature', fromTodos.todosReducer, {
+      metaReducers: metaReducers,
     }),
     EffectsModule.forFeature([TodosEffects]),
   ],
