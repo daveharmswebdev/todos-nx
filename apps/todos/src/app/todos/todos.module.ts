@@ -5,7 +5,7 @@ import { TodosService } from './services/todos.service';
 import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos/todos.component';
 import { StoreModule } from '@ngrx/store';
-import * as fromTodos from './reducers';
+import * as fromTodos from './store/reducers';
 
 @NgModule({
   imports: [
