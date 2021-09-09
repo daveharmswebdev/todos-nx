@@ -1,5 +1,7 @@
 <h1>My Over Engineered Todo Application</h1>
 
+<button mat-button (click)="test()">Test</button>
+
 <todos-nx-todo-display-card
   *ngFor="let todo of todos$ | async"
   [todo]="todo"

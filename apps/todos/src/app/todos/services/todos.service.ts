@@ -6,9 +6,15 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class TodosService {
+  private baseUrl = 'http://localhost:3000/todos';
+
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<ITodo[]> {
-    return this.http.get<ITodo[]>('http://localhost:3000/todos');
+    return this.http.get<ITodo[]>(this.baseUrl);
+  }
+
+  createTodo(todo: ITodo) {
+    return this.http.post<ITodo>(this.baseUrl, todo);
   }
 }
