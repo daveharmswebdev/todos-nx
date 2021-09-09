@@ -8,6 +8,8 @@ import {
   createTodo,
   createTodoFailure,
   createTodoSuccess,
+  deleteTodo,
+  deleteTodoSuccess,
   fetchTodos,
   fetchTodosFailure,
   fetchTodosSuccess,
@@ -33,6 +35,18 @@ export class TodosEffects {
       mergeMap(({ todo }) =>
         this.todosService.createTodo(todo).pipe(
           map((response) => createTodoSuccess({ response })),
+          catchError((error) => of(createTodoFailure({ error })))
+        )
+      )
+    )
+  );
+
+  deleteTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteTodo),
+      mergeMap(({ id }) =>
+        this.todosService.deleteTodo(id).pipe(
+          map(() => deleteTodoSuccess({ id })),
           catchError((error) => of(createTodoFailure({ error })))
         )
       )

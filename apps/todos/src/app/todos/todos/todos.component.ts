@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ITodo } from '@todos-nx/data';
 import { Observable } from 'rxjs';
-import { createTodo, fetchTodos } from '../store/actions/todos.actions';
+import {
+  createTodo,
+  deleteTodo,
+  fetchTodos,
+} from '../store/actions/todos.actions';
 import { TodosState } from '../store/reducers/todos.reducer';
 import { selectTodos } from '../store/selectors/todos.selectors';
 import { Guid } from 'guid-typescript';
@@ -33,5 +37,11 @@ export class TodosComponent implements OnInit {
       status: 4,
     };
     this.store.dispatch(createTodo({ todo }));
+  }
+
+  testDelete() {
+    this.store.dispatch(
+      deleteTodo({ id: 'b097d1be-73be-b844-8c27-9e877adc16db' })
+    );
   }
 }

@@ -17,4 +17,8 @@ export class TodosService {
   createTodo(todo: ITodo) {
     return this.http.post<ITodo>(this.baseUrl, todo);
   }
+
+  deleteTodo(id: string) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }
