@@ -15,10 +15,6 @@ export interface State {
   todos: fromTodos.TodosState;
 }
 
-export const reducers: ActionReducerMap<State> = {
-  todos: fromTodos.todosReducer,
-};
-
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? []
   : [];

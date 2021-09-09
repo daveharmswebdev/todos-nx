@@ -1,30 +1,48 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 import { ITodo } from '@todos-nx/data';
-import { TodosService } from '../../services/todos.service';
 import * as TodosActions from '../actions/todos.actions';
 
-export interface TodosState {
-  todos: ITodo[];
+export interface TodosState extends EntityState<ITodo> {
+  selectedTodoId: string;
   busy: boolean;
   success: boolean;
   error: any;
 }
 
-export const initialState: TodosState = {
-  todos: [],
-  busy: false,
+export function selectTodoId(t: ITodo): string {
+  return t.id;
+}
+
+export function sortByName(a: ITodo, b: ITodo): number {
+  return a.name.localeCompare(b.name);
+}
+
+export const adapter: EntityAdapter<ITodo> = createEntityAdapter<ITodo>({
+  selectId: selectTodoId,
+  sortComparer: sortByName,
+});
+
+export const initialState: TodosState = adapter.getInitialState({
+  selectedTodoId: '',
   success: false,
+  busy: false,
   error: null,
-};
+});
 
 export const todosReducer = createReducer(
   initialState,
-  on(TodosActions.fetchTodos, (state) => ({ ...state, busy: true })),
+  on(
+    TodosActions.fetchTodos,
+    (state: TodosState): TodosState => ({
+      ...state,
+      busy: true,
+    })
+  ),
   on(
     TodosActions.fetchTodosSuccess,
     (state: TodosState, { todos }): TodosState => ({
-      ...state,
-      todos,
+      ...adapter.addMany(todos, state),
       busy: false,
       success: true,
     })
@@ -39,3 +57,23 @@ export const todosReducer = createReducer(
     })
   )
 );
+
+export function reducer(state: TodosState | undefined, action: Action) {
+  return todosReducer(state, action);
+}
+
+// get the selectors
+const { selectIds, selectEntities, selectAll, selectTotal } =
+  adapter.getSelectors();
+
+// select the array of user ids
+export const selectUserIds = selectIds;
+
+// select the dictionary of user entities
+export const selectUserEntities = selectEntities;
+
+// select the array of users
+export const selectAllTodos = selectAll;
+
+// select the total user count
+export const selectTodosTotal = selectTotal;
