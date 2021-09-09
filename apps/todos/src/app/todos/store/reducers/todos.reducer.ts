@@ -48,7 +48,24 @@ export const todosReducer = createReducer(
     })
   ),
   on(
+    TodosActions.createTodoSuccess,
+    (state: TodosState, { response }): TodosState => ({
+      ...adapter.addOne(response, state),
+      busy: false,
+      success: true,
+    })
+  ),
+  on(
     TodosActions.fetchTodosFailure,
+    (state: TodosState, { error }): TodosState => ({
+      ...state,
+      busy: false,
+      success: false,
+      error,
+    })
+  ),
+  on(
+    TodosActions.createTodoFailure,
     (state: TodosState, { error }): TodosState => ({
       ...state,
       busy: false,
