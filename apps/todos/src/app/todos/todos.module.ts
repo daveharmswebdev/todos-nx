@@ -15,7 +15,7 @@ import { metaReducers } from '../reducers';
     CommonModule,
     UiModule,
     TodosRoutingModule,
-    StoreModule.forFeature('todosFeature', fromTodos.todosReducer, {
+    StoreModule.forFeature('todosFeature', fromTodos.reducer, {
       metaReducers: metaReducers,
     }),
     EffectsModule.forFeature([TodosEffects]),
