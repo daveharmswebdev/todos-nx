@@ -19,11 +19,26 @@ export const createTodo = createAction(
 );
 
 export const createTodoSuccess = createAction(
-  '[todo component] create todo success',
+  '[todo effects] create todo success',
   props<{ response: ITodo }>()
 );
 
 export const createTodoFailure = createAction(
-  '[todo component] create todo failure',
+  '[todo effects] create todo failure',
+  props<{ error: any }>()
+);
+
+export const deleteTodo = createAction(
+  '[todo component] delete todo',
+  props<{ id: string }>()
+);
+
+export const deleteTodoSuccess = createAction(
+  '[todo effects] delete todo success',
+  props<{ id: string }>()
+);
+
+export const deleteTodoFailure = createAction(
+  '[todo effects] delete todo failure',
   props<{ error: any }>()
 );

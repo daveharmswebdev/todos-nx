@@ -4,7 +4,8 @@
     <p>{{ todo.description }}</p>
     <p>Assigned to: {{ todo.assignedTo }}</p>
   </mat-card-content>
-  <mat-card-footer>
+  <mat-card-footer fxLayout="row" fxLayoutAlign="space-between center">
     <p>{{ getStatusString(todo.status) }}</p>
+    <mat-icon (click)="deleteTodo()">delete</mat-icon>
   </mat-card-footer>
 </mat-card>

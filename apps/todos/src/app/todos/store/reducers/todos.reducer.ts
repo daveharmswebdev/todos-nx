@@ -45,6 +45,7 @@ export const todosReducer = createReducer(
       ...adapter.addMany(todos, state),
       busy: false,
       success: true,
+      error: null,
     })
   ),
   on(
@@ -53,6 +54,23 @@ export const todosReducer = createReducer(
       ...adapter.addOne(response, state),
       busy: false,
       success: true,
+      error: null,
+    })
+  ),
+  on(
+    TodosActions.deleteTodo,
+    (state: TodosState): TodosState => ({
+      ...state,
+      busy: true,
+    })
+  ),
+  on(
+    TodosActions.deleteTodoSuccess,
+    (state: TodosState, { id }): TodosState => ({
+      ...adapter.removeOne(id, state),
+      busy: false,
+      success: true,
+      error: null,
     })
   ),
   on(
@@ -66,6 +84,15 @@ export const todosReducer = createReducer(
   ),
   on(
     TodosActions.createTodoFailure,
+    (state: TodosState, { error }): TodosState => ({
+      ...state,
+      busy: false,
+      success: false,
+      error,
+    })
+  ),
+  on(
+    TodosActions.deleteTodoFailure,
     (state: TodosState, { error }): TodosState => ({
       ...state,
       busy: false,
