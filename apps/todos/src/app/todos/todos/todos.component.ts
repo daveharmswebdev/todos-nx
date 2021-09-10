@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ITodo } from '@todos-nx/data';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   createTodo,
   deleteTodo,
@@ -18,6 +18,8 @@ import { Guid } from 'guid-typescript';
 })
 export class TodosComponent implements OnInit {
   todos$!: Observable<ITodo[]>;
+  addMode = new BehaviorSubject<boolean>(false);
+  addMode$ = this.addMode.asObservable();
 
   constructor(private store: Store<TodosState>) {}
 
@@ -49,7 +51,7 @@ export class TodosComponent implements OnInit {
     this.store.dispatch(deleteTodo({ id }));
   }
 
-  displayAddForm() {
-    console.log('display');
+  toggleAddMode() {
+    this.addMode.next(!this.addMode.value);
   }
 }

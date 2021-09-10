@@ -7,8 +7,12 @@
     disabled
     aria-label="Example icon button with a home icon"
   >
-    <mat-icon (click)="displayAddForm()">add_circle</mat-icon>
+    <mat-icon (click)="toggleAddMode()">add_circle</mat-icon>
   </button>
+</div>
+
+<div class="addTodoForm">
+  <todos-nx-person *ngIf="addMode$ | async"></todos-nx-person>
 </div>
 
 <div class="todos-list" fxLayout="column" fxLayoutAlign="center center">
