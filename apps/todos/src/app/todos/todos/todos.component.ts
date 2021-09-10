@@ -48,4 +48,8 @@ export class TodosComponent implements OnInit {
   handleDeleteTodo(id: string) {
     this.store.dispatch(deleteTodo({ id }));
   }
+
+  displayAddForm() {
+    console.log('display');
+  }
 }

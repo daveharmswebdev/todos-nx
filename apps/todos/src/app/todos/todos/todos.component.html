@@ -1,9 +1,20 @@
 <h1>My Over Engineered Todo Application</h1>
 
-<button mat-button (click)="testDelete()">Test</button>
+<div class="button-row" fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-button (click)="testDelete()">Test</button>
+  <button
+    mat-mini-fab
+    disabled
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon (click)="displayAddForm()">add_circle</mat-icon>
+  </button>
+</div>
 
-<todos-nx-todo-display-card
-  *ngFor="let todo of todos$ | async"
-  [todo]="todo"
-  (delete)="handleDeleteTodo($event)"
-></todos-nx-todo-display-card>
+<div class="todos-list" fxLayout="column" fxLayoutAlign="center center">
+  <todos-nx-todo-display-card
+    *ngFor="let todo of todos$ | async"
+    [todo]="todo"
+    (delete)="handleDeleteTodo($event)"
+  ></todos-nx-todo-display-card>
+</div>

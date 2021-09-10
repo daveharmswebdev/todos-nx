@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { UiModule } from '@todos-nx/ui';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { TodosService } from './services/todos.service';
 import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos/todos.component';
@@ -19,6 +21,7 @@ import { metaReducers } from '../reducers';
       metaReducers: metaReducers,
     }),
     EffectsModule.forFeature([TodosEffects]),
+    FlexLayoutModule,
   ],
   declarations: [TodosComponent],
   providers: [TodosService],
