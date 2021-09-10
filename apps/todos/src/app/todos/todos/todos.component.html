@@ -5,4 +5,5 @@
 <todos-nx-todo-display-card
   *ngFor="let todo of todos$ | async"
   [todo]="todo"
+  (delete)="handleDeleteTodo($event)"
 ></todos-nx-todo-display-card>

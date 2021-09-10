@@ -44,4 +44,8 @@ export class TodosComponent implements OnInit {
       deleteTodo({ id: 'b097d1be-73be-b844-8c27-9e877adc16db' })
     );
   }
+
+  handleDeleteTodo(id: string) {
+    this.store.dispatch(deleteTodo({ id }));
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITodo, TodoStatus } from '@todos-nx/data';
 
 @Component({
@@ -8,6 +8,11 @@ import { ITodo, TodoStatus } from '@todos-nx/data';
 })
 export class TodoDisplayCardComponent {
   @Input() todo!: ITodo;
+  @Output() delete = new EventEmitter<string>();
+
+  deleteTodo() {
+    this.delete.emit(this.todo.id);
+  }
 
   getStatusString(status: TodoStatus): string {
     switch (status) {

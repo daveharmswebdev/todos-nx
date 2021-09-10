@@ -6,6 +6,6 @@
   </mat-card-content>
   <mat-card-footer fxLayout="row" fxLayoutAlign="space-between center">
     <p>{{ getStatusString(todo.status) }}</p>
-    <mat-icon>delete</mat-icon>
+    <mat-icon (click)="deleteTodo()">delete</mat-icon>
   </mat-card-footer>
 </mat-card>
