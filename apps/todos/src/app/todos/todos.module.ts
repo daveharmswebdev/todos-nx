@@ -11,6 +11,8 @@ import * as fromTodos from './store/reducers/todos.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TodosEffects } from './store/effects/todos.effects';
 import { metaReducers } from '../reducers';
+import { TodoFormComponent } from './todo-form/todo-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,8 +24,10 @@ import { metaReducers } from '../reducers';
     }),
     EffectsModule.forFeature([TodosEffects]),
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [TodosComponent],
+  declarations: [TodosComponent, TodoFormComponent],
   providers: [TodosService],
 })
 export class TodosModule {}

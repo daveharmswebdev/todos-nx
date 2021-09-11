@@ -11,9 +11,10 @@
   </button>
 </div>
 
-<div class="addTodoForm">
-  <todos-nx-person *ngIf="addMode$ | async"></todos-nx-person>
-</div>
+<todos-nx-todo-form
+  *ngIf="addMode$ | async"
+  (createTodo)="handleCreateTodo($event)"
+></todos-nx-todo-form>
 
 <div class="todos-list" fxLayout="column" fxLayoutAlign="center center">
   <todos-nx-todo-display-card
