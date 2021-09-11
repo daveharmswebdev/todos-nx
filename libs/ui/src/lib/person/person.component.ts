@@ -1,13 +1,18 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnDestroy } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
   FormBuilder,
+  FormControl,
+  FormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { IPerson } from '@todos-nx/data';
 import { Subscription } from 'rxjs';
+
+import { IPerson } from '@todos-nx/data';
 
 @Component({
   selector: 'todos-nx-person',
@@ -26,19 +31,23 @@ import { Subscription } from 'rxjs';
     },
   ],
 })
-export class PersonComponent implements ControlValueAccessor {
+export class PersonComponent implements ControlValueAccessor, OnDestroy {
   onTouched = () => {};
 
   onChangeSub!: Subscription;
 
   formGroup = this.fb.group({
-    firstName: ['', Validators.required],
+    firstName: '',
     middleInitial: '',
-    lastName: ['', Validators.required],
+    lastName: '',
     suffix: '',
   });
 
   constructor(private fb: FormBuilder) {}
+
+  ngOnDestroy() {
+    this.onChangeSub.unsubscribe();
+  }
 
   writeValue(value: IPerson): void {
     if (value) {
@@ -47,11 +56,20 @@ export class PersonComponent implements ControlValueAccessor {
   }
 
   registerOnChange(onChange: any): void {
-    this.onChangeSub.add(this.formGroup.valueChanges.subscribe(onChange));
+    this.onChangeSub = this.formGroup.valueChanges.subscribe(onChange);
   }
 
   registerOnTouched(onTouched: any): void {
     this.onTouched = onTouched;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.formGroup.valid) {
+      return null;
+    }
+    return {
+      invalidForm: { valid: false, message: 'formgroup fileds are invalid' },
+    };
   }
 
   setDisabledState(disabled: boolean) {

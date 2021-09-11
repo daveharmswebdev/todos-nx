@@ -2,19 +2,16 @@
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Todo Name</mat-label>
-      <input matInput placeholder="Name of Todo" formControlName="name" />
+      <input matInput formControlName="name" />
     </mat-form-field>
   </p>
   <p>
-    <mat-form-field appearance="fill">
-      <mat-label>Assigned To</mat-label>
-      <input matInput placeholder="Assigned To" formControlName="assignedTo" />
-    </mat-form-field>
+    <todos-nx-person formControlName="assignedTo"></todos-nx-person>
   </p>
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <input matInput placeholder="Assigned To" formControlName="description" />
+      <input matInput formControlName="description" />
     </mat-form-field>
   </p>
   <p>

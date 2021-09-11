@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ITodo, TodoStatus } from '@todos-nx/data';
+import { ITodo, ITodoView, TodoStatus } from '@todos-nx/data';
 
 @Component({
   selector: 'todos-nx-todo-display-card',
@@ -7,7 +7,7 @@ import { ITodo, TodoStatus } from '@todos-nx/data';
   styleUrls: ['./todo-display-card.component.scss'],
 })
 export class TodoDisplayCardComponent {
-  @Input() todo!: ITodo;
+  @Input() todo!: ITodoView;
   @Output() delete = new EventEmitter<string>();
 
   deleteTodo() {

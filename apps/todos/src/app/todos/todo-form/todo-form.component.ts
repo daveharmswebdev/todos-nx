@@ -9,8 +9,8 @@ import { ITodoToCreate, TodoStatus } from '@todos-nx/data';
 })
 export class TodoFormComponent implements OnInit {
   formGroup: FormGroup = this.fb.group({
-    name: [null, Validators.required],
-    assignedTo: [null, Validators.required],
+    name: null,
+    assignedTo: null,
     description: null,
     status: TodoStatus.Unknown,
   });

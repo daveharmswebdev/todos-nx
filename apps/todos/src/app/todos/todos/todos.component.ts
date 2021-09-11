@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ITodo, ITodoToCreate } from '@todos-nx/data';
+import { ITodo, ITodoToCreate, ITodoView } from '@todos-nx/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   createTodo,
@@ -8,7 +8,7 @@ import {
   fetchTodos,
 } from '../store/actions/todos.actions';
 import { TodosState } from '../store/reducers/todos.reducer';
-import { selectTodos } from '../store/selectors/todos.selectors';
+import { selectTodosViews } from '../store/selectors/todos.selectors';
 import { Guid } from 'guid-typescript';
 
 @Component({
@@ -17,14 +17,14 @@ import { Guid } from 'guid-typescript';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-  todos$!: Observable<ITodo[]>;
+  todos$!: Observable<ITodoView[]>;
   addMode = new BehaviorSubject<boolean>(true);
   addMode$ = this.addMode.asObservable();
 
   constructor(private store: Store<TodosState>) {}
 
   ngOnInit() {
-    this.todos$ = this.store.pipe(select(selectTodos));
+    this.todos$ = this.store.pipe(select(selectTodosViews));
 
     this.store.dispatch(fetchTodos());
   }
