@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ITodo } from '@todos-nx/data';
-import { Observable } from 'rxjs';
+import { ITodo, ITodoToCreate } from '@todos-nx/data';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   createTodo,
   deleteTodo,
@@ -18,6 +18,8 @@ import { Guid } from 'guid-typescript';
 })
 export class TodosComponent implements OnInit {
   todos$!: Observable<ITodo[]>;
+  addMode = new BehaviorSubject<boolean>(true);
+  addMode$ = this.addMode.asObservable();
 
   constructor(private store: Store<TodosState>) {}
 
@@ -25,18 +27,6 @@ export class TodosComponent implements OnInit {
     this.todos$ = this.store.pipe(select(selectTodos));
 
     this.store.dispatch(fetchTodos());
-  }
-
-  test() {
-    const guidString = Guid.create().toString();
-    const todo: ITodo = {
-      id: guidString,
-      name: 'test todo 2 ' + guidString,
-      assignedTo: 'Test Doer',
-      description: 'test description ' + guidString,
-      status: 4,
-    };
-    this.store.dispatch(createTodo({ todo }));
   }
 
   testDelete() {
@@ -47,5 +37,17 @@ export class TodosComponent implements OnInit {
 
   handleDeleteTodo(id: string) {
     this.store.dispatch(deleteTodo({ id }));
+  }
+
+  toggleAddMode() {
+    this.addMode.next(!this.addMode.value);
+  }
+
+  handleCreateTodo(todoToCreate: ITodoToCreate) {
+    const todo: ITodo = {
+      ...todoToCreate,
+      id: Guid.create.toString(),
+    };
+    this.store.dispatch(createTodo({ todo }));
   }
 }

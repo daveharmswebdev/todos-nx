@@ -1,0 +1,34 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Todo Name</mat-label>
+      <input matInput placeholder="Name of Todo" formControlName="name" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Assigned To</mat-label>
+      <input matInput placeholder="Assigned To" formControlName="assignedTo" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Assigned To" formControlName="description" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statuses" [value]="status.value">
+          {{ status.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+
+  <pre>{{ this.formGroup.value | json }}</pre>
+
+  <button (click)="create()" mat-raised-button>Create</button>
+</form>
