@@ -1,1 +1,34 @@
-<p>person works!</p>
+<fieldset [formGroup]="formGroup">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="First Name"
+      formControlName="firstName"
+      (blur)="onTouched()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Middle Initial"
+      formControlName="middleInitial"
+      (blur)="onTouched()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Last Name"
+      formControlName="lastName"
+      (blur)="onTouched()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Suffix"
+      formControlName="suffix"
+      (blur)="onTouched()"
+    />
+  </mat-form-field>
+</fieldset>
