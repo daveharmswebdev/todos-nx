@@ -21,4 +21,10 @@ export class TodosService {
   deleteTodo(id: string) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  updateTodoStatus(id: string, status: TodoStatus) {
+    return this.http.patch(this.baseUrl + `/${id}`, {
+      status,
+    });
+  }
 }

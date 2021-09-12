@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ITodo } from '@todos-nx/data';
+import { ITodo, TodoStatus } from '@todos-nx/data';
 
 export const fetchTodos = createAction('[todos component] fetch todos');
 
@@ -40,5 +40,20 @@ export const deleteTodoSuccess = createAction(
 
 export const deleteTodoFailure = createAction(
   '[todo effects] delete todo failure',
+  props<{ error: any }>()
+);
+
+export const updateTodoStatus = createAction(
+  '[todo component] update todo status',
+  props<{ id: string; status: TodoStatus }>()
+);
+
+export const updateTodoStatusSuccess = createAction(
+  '[todo effects] update todo status success',
+  props<{ response: any }>()
+);
+
+export const updateTodoStatusFailure = createAction(
+  '[todo effects] update todo status failure',
   props<{ error: any }>()
 );
