@@ -13,6 +13,9 @@ import {
   fetchTodos,
   fetchTodosFailure,
   fetchTodosSuccess,
+  updateTodoStatus,
+  updateTodoStatusFailure,
+  updateTodoStatusSuccess,
 } from '../actions/todos.actions';
 
 @Injectable()
@@ -48,6 +51,18 @@ export class TodosEffects {
         this.todosService.deleteTodo(id).pipe(
           map(() => deleteTodoSuccess({ id })),
           catchError((error) => of(createTodoFailure({ error })))
+        )
+      )
+    )
+  );
+
+  updateTodoStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateTodoStatus),
+      mergeMap(({ id, status }) =>
+        this.todosService.updateTodoStatus(id, status).pipe(
+          map((response) => updateTodoStatusSuccess({ response })),
+          catchError((error) => of(updateTodoStatusFailure({ error })))
         )
       )
     )
